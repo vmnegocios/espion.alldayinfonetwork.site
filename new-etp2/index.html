@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Espionner WhatsApp - Étape 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 10px;
+            width: 0;
+            background-color: #2AA884;
+            transition: width 0.5s;
+        }
+        .highlight-red {
+            color: #ff0000;
+            font-size: 1.5em;
+        }
+        .info-container {
+            background-color: #DDECED;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+        .steps-container {
+            background-color: #DDECED;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .step-number {
+            background-color: #2AA884;
+            color: white;
+            border-radius: 50%;
+            padding: 6px 12px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .step-item {
+            margin-bottom: 8px;
+            display: none;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05); /* Ajuste o valor para controlar o tamanho do pulso */
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header verde -->
+    <div class="bg-[#2AA884] h-24"></div>
+
+    <!-- Container Principal -->
+    <div class="flex flex-col items-center -mt-12">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+            
+            <!-- Texto principal com número de telefone -->
+            <p class="text-center text-gray-700 mb-4 font-bold text-lg">
+                <span id="phone-number-display"></span>Ils espionnent le numéro de téléphone WhatsApp
+            </p>
+            
+            <!-- Barra de Progresso -->
+            <div class="progress-bar mb-4">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            
+            <!-- Contador de progresso -->
+            <p id="progress-text" class="text-center text-gray-700 mb-4">100% finalisé</p>
+            
+            <!-- Botão que aparece após o carregamento da barra -->
+            <div class="flex justify-center mb-4">
+                <button id="next-step-button" class="bg-[#2AA884] text-white font-bold py-2 px-4 rounded-lg w-full hidden flex items-center justify-center" style="animation: pulse 1.5s ease-in-out infinite;">
+                    <i class="fas fa-lock mr-2"></i> Je veux accéder aux informations
+                </button>
+            </div>
+            
+            <!-- Containers de Informações adicionais (Conversations, Images, Endroits) -->
+            <div id="info-containers" class="flex flex-col items-center lg:flex-row lg:space-x-4 lg:justify-center max-w-2xl mx-auto mt-6 hidden">
+                <!-- Container 1 -->
+                <div class="info-container">
+                    <i class="fas fa-comments text-[#2AA884] text-3xl mb-2"></i>
+                    <p class="font-bold">Conversations suspectes</p>
+                    <p class="highlight-red font-bold">10</p>
+                    <p class="text-xs text-gray-600">*Conversations contenant un contexte sexuel.</p>
+                </div>
+                
+                <!-- Container 2 -->
+                <div class="info-container">
+                    <i class="fas fa-image text-[#2AA884] text-3xl mb-2"></i>
+                    <p class="font-bold">Images suspectes</p>
+                    <p class="highlight-red font-bold">7</p>
+                    <p class="text-xs text-gray-600">*Images identifiées avec du contenu nu.</p>
+                </div>
+                
+                <!-- Container 3 -->
+                <div class="info-container">
+                    <i class="fas fa-search-location text-[#2AA884] text-3xl mb-2"></i>
+                    <p class="font-bold">Endroits suspects</p>
+                    <p class="highlight-red font-bold">9</p>
+                    <p class="text-xs text-gray-600">Lieux tels que motels, salons de massage et points de vente de prostitution.</p>
+                </div>
+            </div>
+
+            <!-- Seção de Etapas -->
+            <div id="steps-section" class="steps-container">
+                <p class="font-bold text-center mb-2">Attendez que le processus soit terminé.</p>
+                <ul class="text-gray-700 text-sm">
+                    <li id="step-1" class="step-item"><span class="step-number">1</span>Connexion à WhatsApp</li>
+                    <li id="step-2" class="step-item"><span class="step-number">2</span>Numéro de téléphone de l'associé</li>
+                    <li id="step-3" class="step-item"><span class="step-number">3</span>Enquête de vulnérabilité</li>
+                    <li id="step-4" class="step-item"><span class="step-number">4</span>Vulnérabilité trouvée</li>
+                    <li id="step-5" class="step-item"><span class="step-number">5</span>Déchiffrer les informations</li>
+                    <li id="step-6" class="step-item"><span class="step-number">6</span>Obtenez des discussions, des photos, des audios, des vidéos et des contacts</li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- Seção de Estatísticas (Reutilizando) -->
+		<div class="flex justify-center space-x-4 mt-6">
+			<!-- Contador de Whatsapps espionados -->
+			<div class="bg-[#DDECED] text-center p-4 rounded-lg">
+				<p class="font-thin text-[#696B6C] text-sm md:text-base lg:text-lg">Total de Whatsapps espionné</p>
+				<p id="whatsapp-count" class="text-xl md:text-2xl lg:text-3xl font-thin">988.771</p>
+			</div>
+			
+			<!-- Data da última atualização -->
+			<div class="bg-[#DDEDE2] text-center p-4 rounded-lg">
+				<p class="font-thin text-[#696B6C] text-sm md:text-base lg:text-lg">Outil mis à jour:</p>
+				<p id="update-date" class="text-xl md:text-2xl lg:text-3xl font-thin"></p>
+			</div>
+		</div>
+		
+    </div>
+	
+	<script>
+		// Função para atualizar a data automaticamente
+		function updateDate() {
+			const dateElement = document.getElementById("update-date");
+			const today = new Date();
+			const options = { day: 'numeric', month: 'long', year: 'numeric' };
+			dateElement.innerText = today.toLocaleDateString('fr-FR', options);
+		}
+
+		// Captura o número de telefone da URL e exibe no título
+		function getQueryParam(param) {
+			const urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get(param);
+		}
+
+		// Exibir o número de telefone
+		const phoneNumber = getQueryParam('phone');
+		if (phoneNumber) {
+			document.getElementById("phone-number-display").innerText = `${phoneNumber} - `;
+		}
+
+		// Função para carregar a barra de progresso e o contador
+		let progress = 0;
+		const progressFill = document.getElementById("progress-fill");
+		const progressText = document.getElementById("progress-text");
+		const nextStepButton = document.getElementById("next-step-button");
+		const infoContainers = document.getElementById("info-containers");
+
+		function updateProgressBar() {
+			if (progress < 100) {
+				progress += 1;
+				progressFill.style.width = progress + "%";
+				progressText.innerText = progress + "% finalisé";
+
+				// Exibir as etapas conforme a barra de progresso atinge certos pontos
+				if (progress === 5) document.getElementById("step-1").style.display = "block";
+				if (progress === 15) document.getElementById("step-2").style.display = "block";
+				if (progress === 30) document.getElementById("step-3").style.display = "block";
+				if (progress === 45) document.getElementById("step-4").style.display = "block";
+				if (progress === 60) document.getElementById("step-5").style.display = "block";
+				if (progress === 90) document.getElementById("step-6").style.display = "block";
+
+			} else {
+				clearInterval(progressInterval);
+
+				// Exibir o botão e os containers de informações imediatamente após o progresso chegar a 100%
+				nextStepButton.classList.remove("hidden");
+				infoContainers.classList.remove("hidden");
+			}
+		}
+
+		// Iniciar a atualização da barra de progresso
+		const progressInterval = setInterval(updateProgressBar, 50);
+
+		// Atualização automática do contador de Whatsapps espionados
+		let wholePart = 988;
+		let decimalPart = 771;
+		const countElement = document.getElementById("whatsapp-count");
+
+		function increaseCounter() {
+			const increment = Math.floor(Math.random() * 4) + 2; // Incremento aleatório entre 2 e 5
+			decimalPart += increment;
+
+			if (decimalPart >= 1000) { // Se a parte decimal passar de 1000, aumenta a parte inteira
+				decimalPart -= 1000;
+				wholePart += 1;
+			}
+
+			// Atualiza o texto do contador com o novo valor formatado
+			countElement.textContent = wholePart + '.' + decimalPart.toString().padStart(3, '0');
+		}
+
+		// Inicialização da data e do contador
+		updateDate();
+		setInterval(increaseCounter, 4500); // Atualiza o contador a cada 4.5 segundos
+	</script>
+
+</body>
+</html>
