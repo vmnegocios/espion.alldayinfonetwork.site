@@ -248,8 +248,11 @@
 				if (progress === 90) document.getElementById("step-6").style.display = "flex";
 			} else {
 				clearInterval(progressInterval);
-				nextStepButton.classList.remove("hidden");
 				infoContainers.classList.remove("hidden");
+				setTimeout(() => {
+					nextStepButton.classList.remove("hidden");
+				}, 3000);
+				
 			}
 		}
 
