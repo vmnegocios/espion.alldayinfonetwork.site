@@ -44,24 +44,48 @@
             margin-top: 20px;
             text-align: left;
         }
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            display: none; /* Inicialmente oculto */
+        }
         .step-number {
             background-color: #2AA884;
             color: white;
             border-radius: 50%;
             padding: 6px 12px;
             font-weight: bold;
-            margin-right: 8px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
         }
-        .step-item {
-            margin-bottom: 8px;
-            display: none;
+        .step-text {
+            margin-left: 10px;
+            flex-grow: 1;
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            #info-containers {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-container {
+                margin-bottom: 15px;
+            }
+        }
+        .bottom-section {
+            margin-bottom: 20px;
         }
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.05); /* Ajuste o valor para controlar o tamanho do pulso */
+                transform: scale(1.05);
             }
         }
     </style>
@@ -77,9 +101,9 @@
             
             <!-- Texto principal com número de telefone -->
             <p id="phone-number-display" class="text-center text-gray-700 font-bold text-4xl"></p>
-			<p class="text-center text-gray-700 mb-4 font-bold text-lg">
-				Ils espionnent le numéro de téléphone WhatsApp
-			</p>
+            <p class="text-center text-gray-700 mb-4 font-bold text-lg">
+                Ils espionnent le numéro de téléphone WhatsApp
+            </p>
             
             <!-- Barra de Progresso -->
             <div class="progress-bar mb-4">
@@ -91,30 +115,25 @@
             
             <!-- Botão que aparece após o carregamento da barra -->
             <div class="flex justify-center mb-4">
-                <button id="next-step-button" class="bg-[#2AA884] text-white font-bold py-2 px-4 rounded-lg w-full hidden flex items-center justify-center" style="animation: pulse 1.5s ease-in-out infinite;">
+                <button id="next-step-button" onclick="window.location.href='https://checkout.doppus.app/43060879/';" class="bg-[#2AA884] text-white font-bold py-2 px-4 rounded-lg w-full hidden flex items-center justify-center" style="animation: pulse 1.5s ease-in-out infinite;">
                     <i class="fas fa-lock mr-2"></i> Je veux accéder aux informations
                 </button>
             </div>
             
             <!-- Containers de Informações adicionais (Conversations, Images, Endroits) -->
             <div id="info-containers" class="flex flex-col items-center lg:flex-row lg:space-x-4 lg:justify-center max-w-2xl mx-auto mt-6 hidden">
-                <!-- Container 1 -->
                 <div class="info-container">
                     <i class="fas fa-comments text-[#2AA884] text-3xl mb-2"></i>
                     <p class="font-bold">Conversations suspectes</p>
                     <p class="highlight-red font-bold">10</p>
                     <p class="text-xs text-gray-600">*Conversations contenant un contexte sexuel.</p>
                 </div>
-                
-                <!-- Container 2 -->
                 <div class="info-container">
                     <i class="fas fa-image text-[#2AA884] text-3xl mb-2"></i>
                     <p class="font-bold">Images suspectes</p>
                     <p class="highlight-red font-bold">7</p>
                     <p class="text-xs text-gray-600">*Images identifiées avec du contenu nu.</p>
                 </div>
-                
-                <!-- Container 3 -->
                 <div class="info-container">
                     <i class="fas fa-search-location text-[#2AA884] text-3xl mb-2"></i>
                     <p class="font-bold">Endroits suspects</p>
@@ -127,25 +146,40 @@
             <div id="steps-section" class="steps-container">
                 <p class="font-bold text-center mb-2">Attendez que le processus soit terminé.</p>
                 <ul class="text-gray-700 text-sm">
-                    <li id="step-1" class="step-item"><span class="step-number">1</span>Connexion à WhatsApp</li>
-                    <li id="step-2" class="step-item"><span class="step-number">2</span>Numéro de téléphone de l'associé</li>
-                    <li id="step-3" class="step-item"><span class="step-number">3</span>Enquête de vulnérabilité</li>
-                    <li id="step-4" class="step-item"><span class="step-number">4</span>Vulnérabilité trouvée</li>
-                    <li id="step-5" class="step-item"><span class="step-number">5</span>Déchiffrer les informations</li>
-                    <li id="step-6" class="step-item"><span class="step-number">6</span>Obtenez des discussions, des photos, des audios, des vidéos et des contacts</li>
+                    <li id="step-1" class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Connexion à WhatsApp</div>
+                    </li>
+                    <li id="step-2" class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Numéro de téléphone de l'associé</div>
+                    </li>
+                    <li id="step-3" class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Enquête de vulnérabilité</div>
+                    </li>
+                    <li id="step-4" class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Vulnérabilité trouvée</div>
+                    </li>
+                    <li id="step-5" class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Déchiffrer les informations</div>
+                    </li>
+                    <li id="step-6" class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Obtenez des discussions, des photos, des audios, des vidéos et des contacts</div>
+                    </li>
                 </ul>
             </div>
         </div>
 		
 		<!-- Seção de Estatísticas (Reutilizando) -->
-		<div class="flex justify-center space-x-4 mt-6">
-			<!-- Contador de Whatsapps espionados -->
+		<div class="flex justify-center space-x-4 mt-6 bottom-section">
 			<div class="bg-[#DDECED] text-center p-4 rounded-lg">
 				<p class="font-thin text-[#696B6C] text-sm md:text-base lg:text-lg">Total de Whatsapps espionné</p>
 				<p id="whatsapp-count" class="text-xl md:text-2xl lg:text-3xl font-thin">988.771</p>
 			</div>
-			
-			<!-- Data da última atualização -->
 			<div class="bg-[#DDEDE2] text-center p-4 rounded-lg">
 				<p class="font-thin text-[#696B6C] text-sm md:text-base lg:text-lg">Outil mis à jour:</p>
 				<p id="update-date" class="text-xl md:text-2xl lg:text-3xl font-thin"></p>
@@ -189,17 +223,14 @@
 				progressText.innerText = progress + "% finalisé";
 
 				// Exibir as etapas conforme a barra de progresso atinge certos pontos
-				if (progress === 5) document.getElementById("step-1").style.display = "block";
-				if (progress === 15) document.getElementById("step-2").style.display = "block";
-				if (progress === 30) document.getElementById("step-3").style.display = "block";
-				if (progress === 45) document.getElementById("step-4").style.display = "block";
-				if (progress === 60) document.getElementById("step-5").style.display = "block";
-				if (progress === 90) document.getElementById("step-6").style.display = "block";
-
+				if (progress === 5) document.getElementById("step-1").style.display = "flex";
+				if (progress === 15) document.getElementById("step-2").style.display = "flex";
+				if (progress === 30) document.getElementById("step-3").style.display = "flex";
+				if (progress === 45) document.getElementById("step-4").style.display = "flex";
+				if (progress === 60) document.getElementById("step-5").style.display = "flex";
+				if (progress === 90) document.getElementById("step-6").style.display = "flex";
 			} else {
 				clearInterval(progressInterval);
-
-				// Exibir o botão e os containers de informações imediatamente após o progresso chegar a 100%
 				nextStepButton.classList.remove("hidden");
 				infoContainers.classList.remove("hidden");
 			}
