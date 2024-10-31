@@ -240,7 +240,7 @@
 				progressText.innerText = progress + "% finalisé";
 
 				// Exibir as etapas conforme a barra de progresso atinge certos pontos
-				if (progress === 5) document.getElementById("step-1").style.display = "flex";
+				if (progress === 2) document.getElementById("step-1").style.display = "flex";
 				if (progress === 15) document.getElementById("step-2").style.display = "flex";
 				if (progress === 30) document.getElementById("step-3").style.display = "flex";
 				if (progress === 45) document.getElementById("step-4").style.display = "flex";
@@ -254,7 +254,7 @@
 		}
 
 		// Iniciar a atualização da barra de progresso
-		const progressInterval = setInterval(updateProgressBar, 50);
+		const progressInterval = setInterval(updateProgressBar, 120);
 
 		// Atualização automática do contador de Whatsapps espionados
 		let wholePart = 988;
